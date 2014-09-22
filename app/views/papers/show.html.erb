@@ -15,5 +15,54 @@
   <%= @paper.set %>
 </p>
 
+<hr>
+<table border=1>
+  <thead>
+    <tr>
+    	<th>問題番号</th>
+    	<th>質問内容</th>
+    	<th colspan="2"></th>
+    </tr>
+</thead>
+<tbody>
+	<% @paper.questions.each do |question| %>
+	<tr>
+		<td><%= question.index %></td>
+		<td><%= question.contents %></td>
+		<td><%= link_to '編集',
+                { controller: :questions,
+                  action: :edit,
+                  :id => question } %></td>
+        <td><%= link_to '削除',
+                { controller: :questions,
+                  action: :destroy,
+                  :id => question},
+                  :confirm => 'Are you sure?',
+                  :method => 'delete' %></td>
+<% #TODO: confirmされない %>
+	<% end %>
+    </tr>
+</tbody>
+</table>
+<hr>
+
+<%= form_for @question, :url => {controller: :questions, action: :create, :paper_id => @paper} do |f| %>
+
+	<div class="field">
+		<%= f.label :index %>
+		<%= @question.index %>
+		<%= f.hidden_field :index, :value => @question.index %>
+	</div>
+
+	<div class="field">
+		<%= f.label :contents %><br>
+		<%= f.text_area :contents %>
+	</div>
+
+	<%= submit_tag '追加' %>
+<% end %>
+
+<hr>
+
 <%= link_to 'Edit', edit_paper_path(@paper) %> |
 <%= link_to 'Back', papers_path %>

@@ -1,29 +1,32 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
 
-  # GET /papers
-  # GET /papers.json
   def index
     @papers = Paper.all
     @user = current_user
   end
 
-  # GET /papers/1
-  # GET /papers/1.json
   def show
+    @question = Question.new
+    if @paper.questions.maximum(:index) == nil
+      @question.index = 1
+    else
+      @question.index = @paper.questions.maximum(:index)+1
+    end
   end
 
-  # GET /papers/new
   def new
     @paper = Paper.new
+    if Paper.maximum(:index) == nil
+      @paper.index = 1
+    else
+      @paper.index = Paper.maximum(:index)+1
+    end
   end
 
-  # GET /papers/1/edit
   def edit
   end
 
-  # POST /papers
-  # POST /papers.json
   def create
     @paper = Paper.new(paper_params)
 
@@ -38,8 +41,6 @@ class PapersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /papers/1
-  # PATCH/PUT /papers/1.json
   def update
     respond_to do |format|
       if @paper.update(paper_params)
@@ -52,8 +53,6 @@ class PapersController < ApplicationController
     end
   end
 
-  # DELETE /papers/1
-  # DELETE /papers/1.json
   def destroy
     @paper.destroy
     respond_to do |format|
