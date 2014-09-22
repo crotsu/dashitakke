@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
   resources :questions
 
-  resources :papers
-  get 'papers', :to => 'papers#index', :as => :user_root
+  resources :papers do
+    put :set, on: :member
+    put :reset, on: :member
+  end
+  get 'papers', to: 'papers#index', as: :user_root
 
 
   get 'welcome/index'

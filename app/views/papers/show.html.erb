@@ -15,6 +15,15 @@
   <%= @paper.set %>
 </p>
 
+
+<hr>
+set:<%= @paper.set %><br>
+<% if @paper.set %>
+  <%= link_to '取り消し', {action: :reset}, method: :put %>
+<% else %>
+  <%= link_to '出題', {action: :set}, method: :put %>
+<% end %>
+
 <hr>
 <table border=1>
   <thead>

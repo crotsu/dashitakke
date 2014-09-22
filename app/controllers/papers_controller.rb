@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: [:show, :edit, :update, :destroy, :set, :reset]
 
   def index
     @papers = Paper.all
@@ -58,6 +58,22 @@ class PapersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to papers_url, notice: 'Paper was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def set
+    @paper.update(set: true)
+    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付のアンケートを出題しました．"
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+    end
+  end
+
+  def reset
+    @paper.update(set: false)
+    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付のアンケートを取り消しました．"
+    respond_to do |format|
+      format.html { redirect_to action: :index }
     end
   end
 
