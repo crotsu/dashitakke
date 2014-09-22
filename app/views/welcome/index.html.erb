@@ -1,0 +1,4 @@
+<h1>dashitakkeへようこそ</h1>
+<p><%= link_to "ログイン", [ :new, :user_session ]  %></p>
+<p><%= link_to "パスワード再発行", [ :new, :user_password ]  %></p>
+<%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
