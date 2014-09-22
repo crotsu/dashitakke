@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @source.filename %>
+</p>
+
+<p>
+  <strong>Content type:</strong>
+  <%= @source.content_type %>
+</p>
+
+<p>
+  <strong>Filesize:</strong>
+  <%= @source.filesize %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @source.code %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @source.question %>
+</p>
+
+<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Back', sources_path %>

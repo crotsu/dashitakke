@@ -11,7 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922083340) do
+ActiveRecord::Schema.define(version: 20140922085842) do
+
+  create_table "answers", force: true do |t|
+    t.string   "status"
+    t.string   "checked_by"
+    t.integer  "paper_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["paper_id"], name: "index_answers_on_paper_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+
+  create_table "papers", force: true do |t|
+    t.integer  "index"
+    t.date     "given_date"
+    t.boolean  "set"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "papers_users", id: false, force: true do |t|
+    t.integer "paper_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer  "index"
+    t.string   "need_check"
+    t.integer  "point"
+    t.text     "contents"
+    t.integer  "paper_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["paper_id"], name: "index_questions_on_paper_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -23,6 +60,18 @@ ActiveRecord::Schema.define(version: 20140922083340) do
     t.integer "user_id", null: false
     t.integer "role_id", null: false
   end
+
+  create_table "sources", force: true do |t|
+    t.string   "filename"
+    t.string   "content_type"
+    t.integer  "filesize"
+    t.binary   "code"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sources", ["question_id"], name: "index_sources_on_question_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
