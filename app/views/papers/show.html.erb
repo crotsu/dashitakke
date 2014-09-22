@@ -20,6 +20,8 @@
   <thead>
     <tr>
     	<th>問題番号</th>
+    	<th>要チェック</th>
+    	<th>ポイント</th>
     	<th>質問内容</th>
     	<th colspan="2"></th>
     </tr>
@@ -28,6 +30,8 @@
 	<% @paper.questions.each do |question| %>
 	<tr>
 		<td><%= question.index %></td>
+		<td><%= question.need_check %></td>
+		<td><%= question.point %></td>
 		<td><%= question.contents %></td>
 		<td><%= link_to '編集',
                 { controller: :questions,
@@ -52,6 +56,16 @@
 		<%= f.label :index %>
 		<%= @question.index %>
 		<%= f.hidden_field :index, :value => @question.index %>
+	</div>
+
+	<div class="field">
+		<%= f.label :need_check %><br>
+		<%= f.select :need_check,["なし","教職員", "学生"] %>
+	</div>
+
+	<div class="field">
+		<%= f.label :point %><br>
+		<%= f.number_field :point %>
 	</div>
 
 	<div class="field">

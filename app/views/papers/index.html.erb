@@ -14,25 +14,23 @@ Your role is 'member'.
 
 <h1>Listing papers</h1>
 
-<table>
+<table border=1>
   <thead>
     <tr>
-      <th>Index</th>
-      <th>Given date</th>
-      <th>Set</th>
-      <th colspan="3"></th>
+      <th>課題番号</th>
+      <th>出題日</th>
+      <th>設問数</th>
+      <th>ステータス</th>
     </tr>
   </thead>
 
   <tbody>
     <% @papers.each do |paper| %>
       <tr>
-        <td><%= paper.index %></td>
+        <td><%= link_to '第' + paper.index.to_s + '回', paper %></td>
         <td><%= paper.given_date %></td>
+        <td><%= paper.questions.length %></td>
         <td><%= paper.set %></td>
-        <td><%= link_to 'Show', paper %></td>
-        <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
-        <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
