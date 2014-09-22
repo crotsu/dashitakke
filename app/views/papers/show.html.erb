@@ -17,7 +17,8 @@
 
 
 <hr>
-set:<%= @paper.set %><br>
+<% if @paper.set %>出題済<% else %>未出題<% end %>
+<br>
 <% if @paper.set %>
   <%= link_to '取り消し', {action: :reset}, method: :put %>
 <% else %>
@@ -63,8 +64,7 @@ set:<%= @paper.set %><br>
 
 	<div class="field">
 		<%= f.label :index %>
-		<%= @question.index %>
-		<%= f.hidden_field :index, :value => @question.index %>
+		<%= f.number_field :index %>
 	</div>
 
 	<div class="field">

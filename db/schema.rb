@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140922085842) do
 
   create_table "answers", force: true do |t|
-    t.string   "status"
+    t.string   "status",      null: false
     t.string   "checked_by"
     t.integer  "paper_id"
     t.integer  "question_id"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20140922085842) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "papers", force: true do |t|
-    t.integer  "index"
-    t.date     "given_date"
-    t.boolean  "set"
+    t.integer  "index",                      null: false
+    t.date     "given_date",                 null: false
+    t.boolean  "set",        default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20140922085842) do
   end
 
   create_table "questions", force: true do |t|
-    t.integer  "index"
-    t.string   "need_check"
-    t.integer  "point"
+    t.integer  "index",      null: false
+    t.string   "need_check", null: false
+    t.integer  "point",      null: false
     t.text     "contents"
     t.integer  "paper_id"
     t.datetime "created_at"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20140922085842) do
   add_index "questions", ["paper_id"], name: "index_questions_on_paper_id"
 
   create_table "roles", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 20140922085842) do
   end
 
   create_table "sources", force: true do |t|
-    t.string   "filename"
-    t.string   "content_type"
-    t.integer  "filesize"
-    t.binary   "code"
+    t.string   "filename",     null: false
+    t.string   "content_type", null: false
+    t.integer  "filesize",     null: false
+    t.binary   "code",         null: false
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,9 +86,9 @@ ActiveRecord::Schema.define(version: 20140922085842) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "attendnumber"
-    t.string   "number"
-    t.string   "name"
+    t.integer  "attendnumber",                        null: false
+    t.string   "number",                              null: false
+    t.string   "name",                                null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
