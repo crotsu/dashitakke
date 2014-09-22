@@ -1,3 +1,17 @@
+<%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
+<p>user name=<%= @user.email%> </p>
+<p>user email=<%= @user.name%> </p>
+<p>
+
+<% if can? :manage, @user %>
+Your role is 'superadmin'.
+<% elsif can? :update, @user %>
+Your role is 'admin'.
+<% else %>
+Your role is 'member'.
+<% end %>
+</p>
+
 <h1>Listing papers</h1>
 
 <table>
@@ -26,4 +40,6 @@
 
 <br>
 
-<%= link_to 'New Paper', new_paper_path %>
+<% if can? :manage, @user %>
+<%= link_to 'New paper', new_paper_path %>
+<% end %>

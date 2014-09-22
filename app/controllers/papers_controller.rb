@@ -5,6 +5,7 @@ class PapersController < ApplicationController
   # GET /papers.json
   def index
     @papers = Paper.all
+    @user = current_user
   end
 
   # GET /papers/1
