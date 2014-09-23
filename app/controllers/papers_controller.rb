@@ -4,7 +4,7 @@ class PapersController < ApplicationController
   def index
     @papers = Paper.all
     @user = current_user
-    if current_user.roles.exists?(name: "member")
+    if current_user.roles.exists?(name: 'member')
       respond_to do |format|
         format.html { redirect_to controller: :students, action: :index}
       end
@@ -67,16 +67,25 @@ class PapersController < ApplicationController
   end
 
   def set
+    # TODO: model/user.rbに移したい．
+    User.all.each do |u|
+      if u.roles.exists?(name: 'member')
+        @paper.users << u
+      end
+    end
+
     @paper.update(set: true)
-    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付のアンケートを出題しました．"
+    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付の課題を出題しました．"
     respond_to do |format|
       format.html { redirect_to action: :index }
     end
   end
 
   def reset
+    @user = @paper.users
+    @paper.users.delete(@user) # paperに関連づいているuserを削除（中間テーブルのレコード削除）
     @paper.update(set: false)
-    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付のアンケートを取り消しました．"
+    flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付の課題を取り消しました．"
     respond_to do |format|
       format.html { redirect_to action: :index }
     end
