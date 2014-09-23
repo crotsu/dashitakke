@@ -10,3 +10,38 @@
   <%= @paper.given_date %>
 </p>
 
+<hr>
+
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>問題番号</th>
+      <th>要チェック</th>
+      <th>ステータス</th>
+      <th>Checked by</th>
+      <th>提出ファイル</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paper.questions.each do |question| %>
+      <tr>
+        <td><%= question.index %></td>
+        <td><%= question.need_check %></td>
+        <td>hogehoge</td>
+        <td>hogehoge</td>
+        <td>
+        	<%= form_for(@source, html: {multipart: true}) do |f| %>
+        	<div class="field">
+        		<%= f.file_field :file %>
+        	</div>
+        	<div class="actions">
+        		<%= submit_tag "Upload" %>
+        	</div>
+        	<% end %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
