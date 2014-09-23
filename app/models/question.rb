@@ -1,4 +1,4 @@
 class Question < ActiveRecord::Base
   belongs_to :paper
-  has_one :source
+  has_many :sources
 end

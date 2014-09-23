@@ -33,6 +33,7 @@ class SourcesController < ApplicationController
       source[:code] = f.read
     end
     @source = Source.new(source)
+    @source.answer_id = source_params[:answer_id]
 
     respond_to do |format|
       if @source.save
@@ -86,6 +87,6 @@ class SourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:filename, :content_type, :filesize, :code, :question_id)
+      params.require(:source).permit(:filename, :content_type, :filesize, :code, :answer_id)
     end
 end
