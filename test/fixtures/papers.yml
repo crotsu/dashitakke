@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   index: 1
   given_date: 2014-09-22
   set: false
 
 two:
-  index: 1
-  given_date: 2014-09-22
-  set: false
+  id: 2
+  index: 2
+  given_date: 2014-09-23
+  set: true

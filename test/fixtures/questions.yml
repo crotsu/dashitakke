@@ -1,15 +1,33 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+1_1:
+  id: 1
   index: 1
-  need_check: MyString
-  point: 1
-  contents: MyText
-  paper_id: 
+  need_check: なし
+  point: 10
+  contents: 課題1の1問目
+  paper_id: 1
 
-two:
+1_2:
+  id: 2
+  index: 2
+  need_check: 教員
+  point: 13
+  contents: 課題1の2問目
+  paper_id: 1
+
+2_1:
+  id: 3
   index: 1
-  need_check: MyString
-  point: 1
-  contents: MyText
-  paper_id: 
+  need_check: なし
+  point: 23
+  contents: 課題2の1問目
+  paper_id: 2
+
+2_2:
+  id: 4
+  index: 2
+  need_check: 教員
+  point: 345
+  contents: 課題2の2問目
+  paper_id: 2
