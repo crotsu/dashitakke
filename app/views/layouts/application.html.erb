@@ -66,11 +66,11 @@
               <li class="nav-header">Sidebar</li>
               <% if current_user %>
               <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
-              <li>出席番号:<%= @user.attendnumber %></li>
-              <li>学籍番号:<%= @user.number %></li>
-              <li>氏名:<%= @user.name %></li>
-              <li>e-mail:<%= @user.email %></li>
-              <% @user.roles.each_with_index do |r, i| %>
+              <li>出席番号:<%= current_user.attendnumber %></li>
+              <li>学籍番号:<%= current_user.number %></li>
+              <li>氏名:<%= current_user.name %></li>
+              <li>e-mail:<%= current_user.email %></li>
+              <% current_user.roles.each_with_index do |r, i| %>
               <li>権限[<%= i %>]=<%= r.name %> </li>
               <% end %>
               <% end %>
