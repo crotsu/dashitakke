@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'students/index'
+
+  get 'students/show'
+
   resources :answers
 
   resources :sources

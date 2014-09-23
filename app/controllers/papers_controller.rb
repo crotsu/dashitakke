@@ -4,6 +4,11 @@ class PapersController < ApplicationController
   def index
     @papers = Paper.all
     @user = current_user
+    if current_user.roles.exists?(name: "member")
+      respond_to do |format|
+        format.html { redirect_to controller: :students, action: :index}
+      end
+    end
   end
 
   def show

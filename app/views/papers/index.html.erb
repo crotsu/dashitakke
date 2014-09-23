@@ -1,6 +1,9 @@
 <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
 <p>user name=<%= @user.email%> </p>
 <p>user email=<%= @user.name%> </p>
+<% @user.roles.each_with_index do |r, i| %>
+<p>user role[<%= i %>]=<%= r.name %> </p>
+<% end %>
 <p>
 
 <% if can? :manage, @user %>
