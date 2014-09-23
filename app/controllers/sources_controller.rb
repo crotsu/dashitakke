@@ -24,7 +24,15 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
-    @source = Source.new(source_params)
+    f = source_params[:code]
+    source = {}
+    if f != nil
+      source[:filename] = f.original_filename
+      source[:content_type] = f.content_type
+      source[:filesize] = f.size
+      source[:code] = f.read
+    end
+    @source = Source.new(source)
 
     respond_to do |format|
       if @source.save
@@ -40,8 +48,17 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    f = source_params[:code]
+    source = {}
+    if f != nil
+      source[:filename] = f.original_filename
+      source[:content_type] = f.content_type
+      source[:filesize] = f.size
+      source[:code] = f.read
+    end
+
     respond_to do |format|
-      if @source.update(source_params)
+      if @source.update(source)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
         format.json { render :show, status: :ok, location: @source }
       else
