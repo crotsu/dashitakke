@@ -1,2 +1,26 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<h1>学生 提出用画面</h1>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>課題番号</th>
+      <th>出題日</th>
+      <th>設問数</th>
+      <th>未完了設問数</th>
+      <th>達成度</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @papers.each do |paper| %>
+      <tr>
+        <td><%= link_to '第' + paper.index.to_s + '回', {action: :show, id: paper.id} %></td>
+        <td><%= paper.given_date %></td>
+        <td><%= paper.questions.length %></td>
+        <td>hogehoge</td>
+        <td>hogehoge</td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

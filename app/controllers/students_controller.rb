@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-  	@user = current_user
+  	@papers = current_user.papers
   end
 
   def show
