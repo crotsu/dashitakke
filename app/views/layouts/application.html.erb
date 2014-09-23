@@ -35,6 +35,13 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+
+    <link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
+    <link type="text/css" rel="Stylesheet" href="/styles/shThemeDefault.css" />
+    <script type="text/javascript" src="/scripts/XRegExp.js"></script>
+    <script type="text/javascript" src="/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/scripts/shAutoloader.js"></script>
+
   </head>
   <body>
 
@@ -91,6 +98,10 @@
       </footer>
 
     </div> <!-- /container -->
-
+    
+    <script type="text/javascript">
+    SyntaxHighlighter.autoloader('cpp c ../scripts/shBrushCpp.js');
+    SyntaxHighlighter.all();
+    </script>
   </body>
 </html>
