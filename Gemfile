@@ -46,3 +46,7 @@ gem 'rails_admin'
 gem 'twitter-bootstrap-rails'
 gem "therubyracer"
 gem "less-rails"
+
+group :development do
+  gem "meta_request"
+end
