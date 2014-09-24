@@ -33,7 +33,7 @@ class SourcesController < ApplicationController
       source[:code] = f.read
     end
     @source = Source.new(source)
-    @source.answer_id = source_params[:answer_id]
+    @source.answer_id = params[:answer_id]
 
     respond_to do |format|
       if @source.save
