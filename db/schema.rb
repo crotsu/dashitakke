@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923082553) do
+ActiveRecord::Schema.define(version: 20140924115942) do
 
   create_table "answers", force: true do |t|
     t.string   "status",      null: false
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20140923082553) do
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "answers", ["paper_id"], name: "index_answers_on_paper_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
   create_table "papers", force: true do |t|
     t.integer  "index",                      null: false

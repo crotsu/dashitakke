@@ -71,6 +71,18 @@ class PapersController < ApplicationController
     User.all.each do |u|
       if u.roles.exists?(name: 'member')
         @paper.users << u
+        @paper.questions.each do |q|
+          @answer = Answer.new
+          @answer.paper_id = @paper.id
+          @answer.question_id = q.id
+          @answer.user_id = u.id
+          @answer.status = "UNDONE"
+
+          if @answer.save
+          else
+          # TODO: エラー処理
+          end
+        end
       end
     end
 
@@ -85,6 +97,7 @@ class PapersController < ApplicationController
     @user = @paper.users
     @paper.users.delete(@user) # paperに関連づいているuserを削除（中間テーブルのレコード削除）
     @paper.update(set: false)
+    @paper.answers.clear
     flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付の課題を取り消しました．"
     respond_to do |format|
       format.html { redirect_to action: :index }
