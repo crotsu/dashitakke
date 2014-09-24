@@ -1,33 +1,28 @@
 <p id="notice"><%= notice %></p>
 
+<h3>第<%= @source.answer.paper.index %>回 課題</h3>
+<h4>出題日：<%= @source.answer.paper.given_date %></h4>
+<h4>問題番号：<%= @source.answer.question.index %></h4>
+
 <p>
   <strong>Filename:</strong>
   <%= @source.filename %>
 </p>
 
-<p>
-  <strong>Content type:</strong>
-  <%= @source.content_type %>
-</p>
-
-<p>
-  <strong>Filesize:</strong>
-  <%= @source.filesize %>
-</p>
-
-<p>
-  <strong>Code:</strong>
-
 <pre class="brush: c">
 <%= @source.code.force_encoding("utf-8") %>
 </pre>
 
-</p>
+<hr>
+<p>ファイルの差し替え</p>
+  <%= form_for(@source, html: {multipart: true}) do |f| %>
+  <div class="field">
+    <%= f.file_field :code %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "差し替え" %>
+  </div>
+  <% end %>
+<hr>
 
-<p>
-  <strong>Answer_id:</strong>
-  <%= @source.answer_id %>
-</p>
-
-<%= link_to 'Edit', edit_source_path(@source) %> |
-<%= link_to 'Back', sources_path %>
+<%= link_to 'Back', root_path %>
