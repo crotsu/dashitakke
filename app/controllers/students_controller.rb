@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_paper, only: [:show]
+  before_action :set_student, only: [:show]
 
   def index
   	@papers = current_user.papers
@@ -10,8 +10,11 @@ class StudentsController < ApplicationController
   end
 
   private
-    def set_paper
+    def set_student
       @paper = Paper.find(params[:id])
     end
 
+    def student_params
+      params.require(:paper).permit(:index, :given_date, :set)
+    end
 end

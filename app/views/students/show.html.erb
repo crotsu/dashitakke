@@ -32,17 +32,20 @@
         <td>hogehoge</td>
         <td>hogehoge</td>
         <td>
-        	<%= form_for(@source, url: {controller: :sources, action: :create, :answer_id => question.id}, html: {multipart: true}) do |f| %>
-
-        	<div class="field">
-        		<%= f.file_field :code %>
-        	</div>
-        	<div class="actions">
-        		<%= submit_tag "Upload" %>
-        	</div>
-        	<% end %>
+        	<% if question.getfilename(question.id, current_user)=="none" %>
+            <%= form_for(@source, url: {controller: :sources, action: :create, :answer_id => Answer.where(question_id: question).find_by(user_id: current_user)}, html: {multipart: true}) do |f| %>
+            <div class="field">
+              <%= f.file_field :code %>
+            </div>
+            <div class="actions">
+              <%= submit_tag "Upload" %>
+            </div>
+           <% end %>
+         <% else %>
+         <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source} %>
+         <% end %>
         </td>
-        <% end %>
-      </tr>
+      <% end %>
+    </tr>
   </tbody>
 </table>
