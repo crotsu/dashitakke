@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h3>第<%= @source.answer.paper.index %>回 課題</h3>
-<h4>出題日：<%= @source.answer.paper.given_date %></h4>
-<h4>問題番号：<%= @source.answer.question.index %></h4>
+<h3>課題番号：第<%= @source.answer.paper.index %>回</h3>
+<h4>出題日：<%= @source.answer.paper.given_date.strftime("%Y年%m月%d日") %></h4>
+<h4>問題番号：<%= @source.answer.question.index %>問目</h4>
 
 <p>
   <strong>Filename:</strong>

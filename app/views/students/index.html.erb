@@ -15,7 +15,7 @@
     <% @papers.each do |paper| %>
       <tr>
         <td><%= link_to '第' + paper.index.to_s + '回', {action: :show, id: paper.id} %></td>
-        <td><%= paper.given_date %></td>
+        <td><%= paper.given_date.strftime("%Y年%m月%d日") %></td>
         <td><%= paper.questions.length %></td>
         <td>hogehoge</td>
         <td>hogehoge</td>
