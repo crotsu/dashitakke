@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'students/index'
+  get 'assignments/index'
 
-  get 'students/show'
+  get 'assignments/show'
 
   resources :answers
 
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     put :reset, on: :member
   end
   get 'papers', to: 'papers#index', as: :user_root
-
 
   get 'welcome/index'
 

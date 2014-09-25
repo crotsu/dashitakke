@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 
-<h3>課題番号：第<%= @paper.index %>回</h3>
-<h4>出題日：<%= simple_date(@paper.given_date) %></h4>
+<h3>課題番号：第<%= @assignment.paper.index %>回</h3>
+<h4>出題日：<%= simple_date(@assignment.paper.given_date) %></h4>
 
 <hr>
 
@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <% @paper.questions.each do |question| %>
+    <% @assignment.paper.questions.each do |question| %>
       <tr>
         <td><%= question.index %></td>
         <td><%= question.need_check %></td>
@@ -43,4 +43,4 @@
   </tbody>
 </table>
 
-<%= link_to 'Back', students_index_path %>
+<%= link_to 'Back', assignments_index_path %>

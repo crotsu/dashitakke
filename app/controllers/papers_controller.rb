@@ -6,7 +6,7 @@ class PapersController < ApplicationController
     @user = current_user
     if current_user.roles.exists?(name: 'member')
       respond_to do |format|
-        format.html { redirect_to controller: :students, action: :index}
+        format.html { redirect_to controller: :assignments, action: :index}
       end
     end
   end
@@ -70,17 +70,22 @@ class PapersController < ApplicationController
     # TODO: model/user.rbに移したい．
     User.all.each do |u|
       if u.roles.exists?(name: 'member')
-        @paper.users << u
-        @paper.questions.each do |q|
-          @answer = Answer.new
-          @answer.paper_id = @paper.id
-          @answer.question_id = q.id
-          @answer.user_id = u.id
-          @answer.status = "UNDONE"
+        @assignment = Assignment.new
+        @assignment.user_id = u.id
+        @assignment.paper_id = @paper.id
 
-          if @answer.save
-          else
-          # TODO: エラー処理
+        if @assignment.save
+          @paper.questions.each do |question|
+            @answer = Answer.new
+            @answer.question_id = question.id
+            @answer.assignment_id = @assignment.id
+            @answer.user_id = u.id
+            @answer.status = "UNDONE"
+            @answer.save
+            if @answer.save
+            else
+              # TODO: エラー処理
+            end
           end
         end
       end

@@ -11,21 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924115942) do
+ActiveRecord::Schema.define(version: 20140925130735) do
 
   create_table "answers", force: true do |t|
-    t.string   "status",      null: false
+    t.string   "status",        null: false
     t.string   "checked_by"
     t.integer  "paper_id"
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "assignment_id"
   end
 
+  add_index "answers", ["assignment_id"], name: "index_answers_on_assignment_id"
   add_index "answers", ["paper_id"], name: "index_answers_on_paper_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["user_id"], name: "index_answers_on_user_id"
+
+  create_table "assignments", force: true do |t|
+    t.integer  "paper_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["paper_id"], name: "index_assignments_on_paper_id"
+  add_index "assignments", ["user_id"], name: "index_assignments_on_user_id"
 
   create_table "papers", force: true do |t|
     t.integer  "index",                      null: false
@@ -33,11 +45,6 @@ ActiveRecord::Schema.define(version: 20140924115942) do
     t.boolean  "set",        default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "papers_users", id: false, force: true do |t|
-    t.integer "paper_id", null: false
-    t.integer "user_id",  null: false
   end
 
   create_table "questions", force: true do |t|
