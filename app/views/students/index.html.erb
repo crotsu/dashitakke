@@ -1,4 +1,4 @@
-<h1>学生 提出用画面</h1>
+<h1>学生 提出用画面<%= @papers[0].answers.length %></h1>
 
 <table border=1>
   <thead>
@@ -15,7 +15,7 @@
     <% @papers.each do |paper| %>
       <tr>
         <td><%= link_to '第' + paper.index.to_s + '回', {action: :show, id: paper.id} %></td>
-        <td><%= paper.given_date.strftime("%Y年%m月%d日") %></td>
+        <td><%= simple_date(paper.given_date)%></td>
         <td><%= paper.questions.length %></td>
         <td>hogehoge</td>
         <td>hogehoge</td>
