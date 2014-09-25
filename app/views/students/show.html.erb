@@ -22,7 +22,7 @@
       <tr>
         <td><%= question.index %></td>
         <td><%= question.need_check %></td>
-        <td>hogehoge</td>
+        <td><%= Answer.where(question_id: question).find_by(user_id: current_user).status %></td>
         <td>hogehoge</td>
         <td>
         	<% if question.getfilename(question.id, current_user)=="none" %>

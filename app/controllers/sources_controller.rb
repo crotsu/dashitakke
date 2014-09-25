@@ -37,6 +37,10 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
+
+        @answer = Answer.find(@source.answer_id)
+        @answer.update(status: "DONE")
+
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
