@@ -23,7 +23,7 @@ Your role is 'member'.
     <% @papers.each do |paper| %>
       <tr>
         <td><%= link_to '第' + paper.index.to_s + '回', paper %></td>
-        <td><%= paper.given_date %></td>
+        <td><%= simple_date(paper.given_date) %></td>
         <td><%= paper.questions.length %></td>
         <td><% if paper.set %>出題済<% else %>未<% end %>
         </td>

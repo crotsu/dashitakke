@@ -2,7 +2,7 @@
 
 
 <h3>課題番号：第<%= @paper.index %>回</h3>
-<h4>出題日：<%= @paper.given_date.strftime("%Y年%m月%d日") %></h4>
+<h4>出題日：<%= simple_date(@paper.given_date) %></h4>
 
 <hr>
 
