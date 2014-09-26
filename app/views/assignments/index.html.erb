@@ -1,3 +1,5 @@
+<%= javascript_include_tag "jsProgressBarHandler" %>
+
 <h1>学生 提出用画面</h1>
 
 <table border=1>
@@ -7,7 +9,7 @@
       <th>出題日</th>
       <th>設問数</th>
       <th>未完了設問数</th>
-      <th>達成度</th>
+      <th>現時点での課題提出の達成度</th>
     </tr>
   </thead>
 
@@ -18,7 +20,11 @@
         <td><%= simple_date(assignment.paper.given_date)%></td>
         <td><%= assignment.paper.questions.length %></td>
         <td><%= assignment.undone_answers.length %></td>
-        <td><%= assignment.progress %></td>
+        <td>
+          <div class="alert alert-info">
+            <div class="progress"><div class="bar" style="width: <%= assignment.progress.to_s+"%" %>;"><%= assignment.progress %>%
+            </div></div></div>
+          </td>
         </td>
       </tr>
     <% end %>
