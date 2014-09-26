@@ -99,10 +99,11 @@ class PapersController < ApplicationController
   end
 
   def reset
-    @user = @paper.users
-    @paper.users.delete(@user) # paperに関連づいているuserを削除（中間テーブルのレコード削除）
+    @paper.assignments.each do |assignment|
+      assignment.destroy
+    end
     @paper.update(set: false)
-    @paper.answers.clear
+
     flash[:notice] = @paper.given_date.strftime("%Y年 %m月 %d日") + "付の課題を取り消しました．"
     respond_to do |format|
       format.html { redirect_to action: :index }

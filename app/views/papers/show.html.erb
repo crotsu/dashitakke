@@ -15,8 +15,6 @@
   <%= @paper.set %>
 </p>
 
-
-<hr>
 <% if @paper.set %>出題済<% else %>未<% end %>
 <br>
 <% if @paper.set %>
@@ -25,6 +23,12 @@
   <%= link_to '出題', {action: :set}, method: :put %>
 <% end %>
 
+<hr>
+<% if @paper.set %>
+
+<%= render 'papers/students' %>
+
+<% else %>
 <hr>
 <table border=1>
   <thead>
@@ -89,3 +93,5 @@
 
 <%= link_to 'Edit', edit_paper_path(@paper) %> |
 <%= link_to 'Back', papers_path %>
+
+<% end %>
