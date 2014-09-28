@@ -1,5 +1,3 @@
-<%= javascript_include_tag "jsProgressBarHandler" %>
-
 <h1>学生 提出用画面</h1>
 
 <table border=1>
@@ -18,15 +16,14 @@
       <tr>
         <td><%= link_to '第' + assignment.paper.index.to_s + '回', {action: :show, id: assignment.id} %></td>
         <td><%= simple_date(assignment.paper.given_date)%></td>
-        <td><%= assignment.paper.questions.length %></td>
-        <td><%= assignment.undone_answers.length %></td>
+        <td><span class="badge badge-success"><%= assignment.paper.questions.length %></span></td>
+        <td><span class="badge badge-important"><%= assignment.undone_answers.length %></span></td>
         <td>
           <div class="alert alert-info">
             <div class="progress"><div class="bar" style="width: <%= assignment.progress.to_s+"%" %>;"><%= assignment.progress %>%
             </div></div></div>
-          </td>
         </td>
-      </tr>
+        </tr>
     <% end %>
   </tbody>
 </table>
