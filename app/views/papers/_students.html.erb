@@ -16,7 +16,7 @@
       <td><%= assignment.user.number %></td>
       <td><%= assignment.user.name %></td>
       <% assignment.answers.each do |answer| %>
-      <td><%= answer.status %></td>
+      <td><%= link_to answer.status_to_mark, {controller: :sources, action: :show, id: answer.id} %></td>
       <% end %>
       <td>
         <div class="alert alert-info">

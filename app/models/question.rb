@@ -10,4 +10,16 @@ class Question < ActiveRecord::Base
   		return "none"
   	end
   end
+
+  def status_to_mark
+    case self.status
+    when "DONE"
+      return "○"
+    when "WAITING"
+      return "△"
+    else
+      return ""
+    end
+  end
+
 end
