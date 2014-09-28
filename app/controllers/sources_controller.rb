@@ -10,6 +10,7 @@ class SourcesController < ApplicationController
   # GET /sources/1
   # GET /sources/1.json
   def show
+    @answer = Answer.find(@source.answer.id)
   end
 
   # GET /sources/new
@@ -39,7 +40,7 @@ class SourcesController < ApplicationController
       if @source.save
 
         @answer = Answer.find(@source.answer_id)
-        @answer.update(status: "DONE")
+        @answer.update(status: "UPLOAD")
 
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }

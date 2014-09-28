@@ -40,9 +40,10 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   # PATCH/PUT /answers/1.json
   def update
+    @answer.checked_by = current_user.name
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
+        format.html { redirect_to paper_path(@answer.assignment.paper), notice: 'Answer was successfully updated.' }
         format.json { render :show, status: :ok, location: @answer }
       else
         format.html { render :edit }
@@ -51,6 +52,14 @@ class AnswersController < ApplicationController
     end
   end
 
+  def check
+    if @answer.update(answer_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+
+  end
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy

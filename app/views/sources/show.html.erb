@@ -6,7 +6,9 @@
 
 <p>
   <strong>Filename:</strong>
-  <%= @source.filename %>
+  <%= @source.filename %><br>
+ <strong>Checked_by:</strong>
+  <%= @source.answer.checked_by %>
 </p>
 
 <pre class="brush: c">
@@ -14,14 +16,10 @@
 </pre>
 
 <hr>
-<p>ファイルの差し替え</p>
-  <%= form_for(@source, html: {multipart: true}) do |f| %>
-  <div class="field">
-    <%= f.file_field :code %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "差し替え" %>
-  </div>
+  <% if current_user.roles.exists?(name: 'member') %>
+  <%= render 'sources/student' %>
+  <% else %>
+  <%= render 'sources/teacher' %>
   <% end %>
 <hr>
 

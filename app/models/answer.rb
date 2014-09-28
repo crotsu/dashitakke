@@ -7,6 +7,8 @@ class Answer < ActiveRecord::Base
   def status_to_mark
     case self.status
     when "DONE"
+      return "◎"
+    when "UPLOAD"
       return "○"
     when "WAITING"
       return "△"

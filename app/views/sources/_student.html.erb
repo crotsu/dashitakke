@@ -1,0 +1,9 @@
+  <p>ファイルの差し替え</p>
+  <%= form_for(@source, html: {multipart: true}) do |f| %>
+  <div class="field">
+    <%= f.file_field :code %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "差し替え" %>
+  </div>
+  <% end %>
