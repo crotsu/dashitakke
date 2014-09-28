@@ -16,12 +16,14 @@
       <tr>
         <td><%= link_to '第' + assignment.paper.index.to_s + '回', {action: :show, id: assignment.id} %></td>
         <td><%= simple_date(assignment.paper.given_date)%></td>
-        <td><span class="badge badge-success"><%= assignment.paper.questions.length %></span></td>
-        <td><span class="badge badge-important"><%= assignment.undone_answers.length %></span></td>
+        <td><span class="badge"><%= assignment.paper.questions.length %></span></td>
+        <td><span class="badge"><%= assignment.undone_answers.length %></span></td>
         <td>
-          <div class="alert alert-info">
-            <div class="progress"><div class="bar" style="width: <%= assignment.progress.to_s+"%" %>;"><%= assignment.progress %>%
-            </div></div></div>
+         <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<%= assignment.progress.to_s %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= assignment.progress.to_s+"%" %>;">
+            <%= assignment.progress %>%
+          </div>
+        </div>
         </td>
         </tr>
     <% end %>

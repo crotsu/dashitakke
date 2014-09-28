@@ -25,9 +25,11 @@
       </td>
       <% end %>
       <td>
-        <div class="alert alert-info">
-          <div class="progress"><div class="bar" style="width: <%= assignment.progress.to_s+"%" %>;"><%= assignment.progress %>%
-          </div></div></div>
+       <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= assignment.progress.to_s %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= assignment.progress.to_s+"%" %>;">
+          <%= assignment.progress %>%
+        </div>
+      </div>
       </td>
     </tr>
     <% end %>

@@ -43,7 +43,7 @@ gem 'cancancan'
 gem 'rails_admin'
 
 # Twitter Bootstrap
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap3-rails'
 gem "therubyracer"
 gem "less-rails"
 
