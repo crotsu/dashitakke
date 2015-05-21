@@ -1,3 +1,5 @@
+<%
+=begin %>
 <% if can? :manage, @user %>
 Your role is 'superadmin'.
 <% elsif can? :update, @user %>
@@ -6,8 +8,10 @@ Your role is 'admin'.
 Your role is 'member'.
 <% end %>
 </p>
+<%
+=end %>
 
-<h1>Listing papers</h1>
+<h1>課題提出状況</h1>
 
 <table border=1>
   <thead>
