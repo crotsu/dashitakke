@@ -10,6 +10,6 @@ class Source < ActiveRecord::Base
   end
 =end
   has_attached_file :avatar,
-  path: "#{Rails.root}/public/source_code/j13/:filename"
+  path: "#{Rails.root}/public/source_code/j14/:filename"
   do_not_validate_attachment_file_type :avatar
 end
