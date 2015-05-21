@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   def getfilename question_id, user_id
   	source = Question.find(question_id).answers.find_by(user_id: user_id).source
   	if source
-  		return source.filename
+  		return source.avatar_file_name
   	else
   		return "none"
   	end
