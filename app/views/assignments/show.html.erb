@@ -28,7 +28,7 @@
         	<% if question.getfilename(question.id, current_user)=="none" %>
             <%= form_for(@source, url: {controller: :sources, action: :create, answer_id: Answer.where(question_id: question).find_by(user_id: current_user)}, html: {multipart: true}) do |f| %>
             <div class="field">
-              <%= f.file_field :code %>
+              <%= f.file_field :avatar %>
             </div>
             <div class="actions">
               <%= submit_tag "Upload" %>

@@ -50,3 +50,5 @@ gem "less-rails"
 group :development do
   gem "meta_request"
 end
+
+gem 'paperclip'

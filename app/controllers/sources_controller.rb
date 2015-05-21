@@ -11,6 +11,9 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @answer = Answer.find(@source.answer.id)
+    f = open(@source.avatar.path, "r")
+    @cfile = f.read
+    f.close
   end
 
   # GET /sources/new
@@ -25,15 +28,12 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
-    f = source_params[:code]
-    source = {}
-    if f != nil
-      source[:filename] = f.original_filename
-      source[:content_type] = f.content_type
-      source[:filesize] = f.size
-      source[:code] = f.read
-    end
-    @source = Source.new(source)
+    @source = Source.new(source_params)
+
+    @source.filename = "moukaeritai"
+    @source.content_type = "texttext"
+    @source.filesize = 520000
+    @source.code = "oh"
     @source.answer_id = params[:answer_id]
 
     respond_to do |format|
@@ -92,6 +92,6 @@ class SourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:filename, :content_type, :filesize, :code, :answer_id)
+      params.require(:source).permit(:filename, :content_type, :filesize, :code, :answer_id, :avatar)
     end
 end

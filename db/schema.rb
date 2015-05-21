@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925130735) do
+ActiveRecord::Schema.define(version: 20140928123715) do
 
   create_table "answers", force: true do |t|
     t.string   "status",        null: false
@@ -71,13 +71,17 @@ ActiveRecord::Schema.define(version: 20140925130735) do
   end
 
   create_table "sources", force: true do |t|
-    t.string   "filename",     null: false
-    t.string   "content_type", null: false
-    t.integer  "filesize",     null: false
-    t.binary   "code",         null: false
+    t.string   "filename"
+    t.string   "content_type"
+    t.integer  "filesize"
+    t.binary   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answer_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "sources", ["answer_id"], name: "index_sources_on_answer_id"
