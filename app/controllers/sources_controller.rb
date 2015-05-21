@@ -30,7 +30,7 @@ class SourcesController < ApplicationController
   def create
     @source = Source.new(source_params)
 
-    @source.filename = f.original_filename
+    @source.filename = params[:original_filename]
     @source.content_type = "texttext"
     @source.filesize = 520000
     @source.code = "oh"
