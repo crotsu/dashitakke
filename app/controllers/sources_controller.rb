@@ -30,7 +30,7 @@ class SourcesController < ApplicationController
   def create
     @source = Source.new(source_params)
 
-    @source.filename = f.original_filename
+    @source.filename = params[:original_filename]
     @source.content_type = "texttext"
     @source.filesize = 520000
     @source.code = "oh"
@@ -54,20 +54,28 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    '''
     f = source_params[:code]
+    print f
     source = {}
     if f != nil
-      source[:filename] = f.original_filename
-      source[:content_type] = f.content_type
-      source[:filesize] = f.size
+      source[:avatar_file_name] = f.original_filename
+      source[:avatar_content_type] = f.content_type
+      source[:avatar_file_size] = f.size
       source[:code] = f.read
     end
 
+    print "source"
+    print source
+'''
+
     respond_to do |format|
-      if @source.update(source)
+      if @source.update(source_params)
+        print "success!"
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
         format.json { render :show, status: :ok, location: @source }
       else
+        print "error..."
         format.html { render :edit }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
