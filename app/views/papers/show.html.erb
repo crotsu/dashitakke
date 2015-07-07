@@ -54,12 +54,11 @@
         <td><%= link_to '削除',
                 { controller: :questions,
                   action: :destroy,
-                  :id => question},
-                  :confirm => 'Are you sure?',
+                  :id => question },
+                  :data => { :confirm => 'Are you sure?' },
                   :method => 'delete' %></td>
-<% #TODO: confirmされない %>
 	<% end %>
-    </tr>
+  </tr>
 </tbody>
 </table>
 <hr>
