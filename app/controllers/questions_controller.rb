@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.paper_id = params[:paper_id]
+    @paper = Paper.find(params[:paper_id])
 
     respond_to do |format|
      if @question.save
@@ -28,7 +29,7 @@ class QuestionsController < ApplicationController
         # TODO: noticeが表示されない
         format.json { render :show, status: :created, location: @question }
       else
-        format.html { render :new }
+        format.html { render :template=> "papers/show", :locals => { :paper => @paper } }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end

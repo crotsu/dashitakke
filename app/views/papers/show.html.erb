@@ -20,7 +20,7 @@
 <% if @paper.set %>
   <%= link_to '取り消し', {action: :reset}, method: :put %>
 <% else %>
-  <%= link_to '出題', {action: :set}, method: :put %>
+  <%= link_to '出題', set_paper_path(@paper.id), method: :put %>
 <% end %>
 
 <hr>
@@ -64,7 +64,6 @@
 <hr>
 
 <%= form_for @question, :url => {controller: :questions, action: :create, :paper_id => @paper} do |f| %>
-
 	<div class="field">
 		<%= f.label :index %>
     <p><%= @question.index %></p>
