@@ -50,7 +50,13 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    paper_id = @question.paper_id
     @question.destroy
+    # indexを振り直す
+    @questions = Question.where(paper_id: paper_id)
+    @questions.each_with_index do |q, i|
+      q.update(:index => (i+1))
+    end
     respond_to do |format|
       format.html { redirect_to controller: :papers, action: :show, :id => @question.paper_id, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
