@@ -13,7 +13,8 @@
 
   <div class="field">
     <%= f.label :index %><br>
-    <%= f.number_field :index %>
+    <p><%= @paper.index %></p>
+    <%= f.hidden_field :index %>
   </div>
   <div class="field">
     <%= f.label :given_date %><br>
