@@ -68,7 +68,8 @@
 
 	<div class="field">
 		<%= f.label :index %>
-		<%= f.number_field :index %>
+    <p><%= @question.index %></p>
+		<%= f.hidden_field :index %>
 	</div>
 
 	<div class="field">
