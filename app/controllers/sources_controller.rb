@@ -12,7 +12,7 @@ class SourcesController < ApplicationController
   def show
     @answer = Answer.find(@source.answer.id)
     f = open(@source.avatar.path, "r")
-    @cfile = f.read
+    @cfile = f.read.scrub('?')
     f.close
   end
 
