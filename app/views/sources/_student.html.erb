@@ -1,5 +1,16 @@
   <p>ファイルの差し替え</p>
   <%= form_for(@source, url: {controller: :sources, action: :update}, html: {multipart: true}) do |f| %>
+	<% if @source.errors.any? %>
+		<div id="error_explanation">
+		<h2><%= pluralize(@source.errors.count, "error") %> prohibited this paper from being saved:</h2>
+		<ul>
+			<% @source.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+		</div>
+	<% end %>
+
   <div class="field">
     <%= f.file_field :avatar %>
   </div>

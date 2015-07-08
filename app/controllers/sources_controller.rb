@@ -54,7 +54,8 @@ class SourcesController < ApplicationController
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
         format.json { render :show, status: :ok, location: @source }
       else
-        @source = Source.find(@source)
+        avatar = Source.find(@source).avatar
+        @source.avatar = avatar
         @cfile = @source.getSourcefile(@source.avatar.path)
         format.html { render :template => "sources/show", :locals => { :source => @source, :cfile => @cfile } }
         format.json { render json: @source.errors, status: :unprocessable_entity }
