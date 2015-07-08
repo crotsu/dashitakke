@@ -30,22 +30,19 @@ class SourcesController < ApplicationController
   def create
     @source = Source.new(source_params)
 
-    @source.filename = params[:original_filename]
-    @source.content_type = "texttext"
-    @source.filesize = 520000
-    @source.code = "oh"
     @source.answer_id = params[:answer_id]
 
     respond_to do |format|
       if @source.save
-
         @answer = Answer.find(@source.answer_id)
+        # ステータスを更新
         @answer.update(status: "UPLOAD")
-
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
-        format.html { render :new }
+        assignment_id = Answer.find(@source.answer_id).assignment_id
+        @assignment = Assignment.find(assignment_id)
+        format.html { render :template => "assignments/show", :locals => { :assignment => @assignment } }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
@@ -85,6 +82,6 @@ class SourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:filename, :content_type, :filesize, :code, :answer_id, :avatar)
+      params.require(:source).permit(:answer_id, :avatar)
     end
 end
