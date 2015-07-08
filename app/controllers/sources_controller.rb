@@ -11,9 +11,7 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @answer = Answer.find(@source.answer.id)
-    f = open(@source.avatar.path, "r")
-    @cfile = f.read.scrub('?')
-    f.close
+    @cfile = @source.getSourcefile(@source.avatar.path)
   end
 
   # GET /sources/new
@@ -53,12 +51,12 @@ class SourcesController < ApplicationController
   def update
     respond_to do |format|
       if @source.update(source_params)
-        print "success!"
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
         format.json { render :show, status: :ok, location: @source }
       else
-        print "error..."
-        format.html { render :edit }
+        @source = Source.find(@source)
+        @cfile = @source.getSourcefile(@source.avatar.path)
+        format.html { render :template => "sources/show", :locals => { :source => @source, :cfile => @cfile } }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
