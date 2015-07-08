@@ -10,9 +10,11 @@ class Source < ActiveRecord::Base
   end
 =end
 
+  # アップロードしたファイルの保存先
   number = User.current.number
   save_dir_path = "#{Rails.root}/public/source_code/" + "j" + number.to_s[0..1] + "/j" + number.to_s.delete("-") + "/"
-  has_attached_file :avatar,
-  path: save_dir_path + ":filename"
-  do_not_validate_attachment_file_type :avatar
+
+  has_attached_file :avatar, path: save_dir_path + ":filename"
+  validates_attachment :avatar, content_type: { content_type: ["application/octet-stream"] }
+
 end
