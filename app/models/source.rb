@@ -17,4 +17,11 @@ class Source < ActiveRecord::Base
   has_attached_file :avatar, path: save_dir_path + ":filename"
   validates_attachment :avatar, content_type: { content_type: ["application/octet-stream"] }
 
+  def getSourcefile path
+    f = open(path, "r")
+    srcFile = f.read.scrub('?')
+    f.close
+    return srcFile
+  end
+
 end
