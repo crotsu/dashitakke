@@ -1,14 +1,5 @@
 class Source < ActiveRecord::Base
   belongs_to :answer
-=begin
-  Paperclip.interpolates :user do |attachment, style|
-   attachment.instance.user
-  end
-
-  Paperclip.interpolates :date do |attachment, style|
-   attachment.instance.date
-  end
-=end
 
   # アップロードしたファイルの保存先
   number = User.current.number

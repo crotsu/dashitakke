@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928123715) do
+ActiveRecord::Schema.define(version: 20150709112248) do
 
   create_table "answers", force: true do |t|
     t.string   "status",        null: false
@@ -71,13 +71,9 @@ ActiveRecord::Schema.define(version: 20140928123715) do
   end
 
   create_table "sources", force: true do |t|
-    t.string   "filename"
-    t.string   "content_type"
-    t.integer  "filesize"
-    t.binary   "code"
+    t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "answer_id"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -102,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140928123715) do
     t.integer  "attendnumber",                        null: false
     t.string   "number",                              null: false
     t.string   "name",                                null: false
+    t.integer  "fighting_power",         default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
