@@ -35,11 +35,6 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
-
-    <link type="text/css" rel="stylesheet" href="/styles/shCore.css"/>
-    <link type="text/css" rel="Stylesheet" href="/styles/shThemeDefault.css" />
-    <script type="text/javascript" src="/scripts/shCore.js"></script>
-    <script type="text/javascript" src="/scripts/shAutoloader.js"></script>
   </head>
   <body>
 
@@ -63,9 +58,6 @@
 
     <div class="container">
       <div class="row">
-
-
-
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h3>Sidebar</h3>
@@ -107,8 +99,9 @@
     </div> <!-- /container -->
 
     <script type="text/javascript">
-    SyntaxHighlighter.autoloader('c ../scripts/shBrushCpp.js');
+    SyntaxHighlighter.autoloader('cpp c ../scripts/shBrushCpp.js');
     SyntaxHighlighter.all();
     </script>
+
   </body>
 </html>
