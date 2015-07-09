@@ -46,6 +46,7 @@ gem 'rails_admin'
 gem 'twitter-bootstrap3-rails'
 gem "therubyracer"
 gem "less-rails"
+gem 'devise-bootstrap-views'
 
 group :development do
   gem "meta_request"
