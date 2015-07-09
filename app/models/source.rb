@@ -6,7 +6,10 @@ class Source < ActiveRecord::Base
   save_dir_path = "#{Rails.root}/public/source_code/" + "j" + number.to_s[0..1] + "/j" + number.to_s.delete("-") + "/"
 
   has_attached_file :avatar, path: save_dir_path + ":filename"
-  validates_attachment :avatar, content_type: { content_type: ["application/octet-stream"] }
+#  validates_attachment :avatar, content_type: { content_type: ["application/octet-stream", "text/plain"] }
+
+  validates_attachment_presence :avatar
+  validates_attachment_file_name :avatar, :matches => [/.c\Z/]
 
   def getSourcefile path
     f = open(path, "r")
