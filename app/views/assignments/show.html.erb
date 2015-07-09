@@ -10,7 +10,7 @@
   <thead>
     <tr>
       <th>問題番号</th>
-      <th width="200">設問内容</th>
+      <th>設問内容</th>
       <th>要チェック</th>
       <th>ステータス</th>
       <th>Checked by</th>
@@ -24,11 +24,12 @@
         <td><%= question.index %></td>
         <td><%= question.contents %></td>
         <td><%= question.need_check %></td>
-        <td><%= Answer.where(question_id: question).find_by(user_id: current_user).status %></td>
-        <td><%= Answer.where(question_id: question).find_by(user_id: current_user).checked_by %></td>
+        <td><%= question.answers.find_by(user_id: current_user).status %></td>
+        <td><%= question.answers.find_by(user_id: current_user).checked_by %></td>
         <td>
         	<% if question.getfilename(question.id, current_user)=="none" %>
-            <%= bootstrap_form_for(@source, url: {controller: :sources, action: :create, answer_id: Answer.where(question_id: question).find_by(user_id: current_user)}) do |f| %>
+            <%= bootstrap_form_for(@source, url: {controller: :sources, action: :create }) do |f| %>
+                <%= f.hidden_field :answer_id, value: question.answers.find_by(user_id: current_user).id %>
                 <%= f.file_field :avatar, hide_label: true %>
                 <%= f.submit "アップロード", class: "btn btn-default btn-xs" %>
             <% end %>
