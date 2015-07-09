@@ -18,9 +18,9 @@
 <% if @paper.set %>出題済<% else %>未<% end %>
 <br>
 <% if @paper.set %>
-  <%= link_to '取り消し', {action: :reset}, method: :put %>
+  <%= link_to '取り消し', reset_paper_path(@paper.id), method: :put, class: "btn btn-danger" %>
 <% else %>
-  <%= link_to '出題', set_paper_path(@paper.id), method: :put %>
+  <%= link_to '出題', set_paper_path(@paper.id), method: :put, class: "btn btn-primary" %>
 <% end %>
 
 <hr>
@@ -30,7 +30,7 @@
 
 <% else %>
 <hr>
-<table border=1>
+<table class="table table-hover">
   <thead>
     <tr>
     	<th>問題番号</th>
@@ -50,12 +50,14 @@
 		<td><%= link_to '編集',
                 { controller: :questions,
                   action: :edit,
-                  :id => question } %></td>
-        <td><%= link_to '削除',
+                  :id => question },
+                  :class => "btn btn-sm btn-warning" %>
+        <%= link_to '削除',
                 { controller: :questions,
                   action: :destroy,
                   :id => question },
                   :data => { :confirm => 'Are you sure?' },
+                  :class => "btn btn-sm btn-danger",
                   :method => 'delete' %></td>
 	<% end %>
   </tr>
@@ -63,18 +65,7 @@
 </table>
 <hr>
 
-<%= form_for @question, :url => {controller: :questions, action: :create, :paper_id => @paper} do |f| %>  <% if @question.errors.any? %>
-
-  <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= bootstrap_form_for @question, :url => {controller: :questions, action: :create, :paper_id => @paper} do |f| %> 
 
 	<div class="field">
 		<%= f.label :index %>
@@ -83,21 +74,20 @@
 	</div>
 
 	<div class="field">
-		<%= f.label :need_check %><br>
 		<%= f.select :need_check, ["なし","教員", "学生"] %>
 	</div>
 
 	<div class="field">
-		<%= f.label :point %><br>
 		<%= f.number_field :point %>
 	</div>
 
 	<div class="field">
-		<%= f.label :contents %><br>
 		<%= f.text_area :contents %>
 	</div>
 
-	<%= submit_tag '追加' %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
 
 <hr>
