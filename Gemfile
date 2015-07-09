@@ -46,7 +46,7 @@ gem 'rails_admin'
 gem 'twitter-bootstrap-rails',  :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "less-rails"
 gem 'devise-bootstrap-views'
-gem 'bootstrap-form'
+gem 'bootstrap_form'
 
 group :development do
   gem "meta_request"
