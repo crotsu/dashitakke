@@ -20,8 +20,7 @@
         <td><span class="badge"><%= assignment.undone_answers.length %></span></td>
         <td>
          <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="<%= assignment.progress.to_s %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= assignment.progress.to_s+"%" %>;">
-            <%= assignment.progress %>%
+          <div class="progress-bar" role="progressbar" data-transitiongoal="<%= assignment.progress.to_s %>">
           </div>
         </div>
         </td>
@@ -29,3 +28,10 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $('.progress .progress-bar').progressbar();
+  $(document).ready(function() {
+    $('.progress .progress-bar').progressbar({display_text: 'fill'});
+  });
+</script>
