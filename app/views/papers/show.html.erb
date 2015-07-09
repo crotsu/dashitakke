@@ -1,26 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="alert alert-info">
+  <h1>
+    <span class="label label-info">課題番号</span>
+    <%= @paper.index %>
+  </h1>
+  <h3>
+    <span class="label label-info">出題日</span>
+    <%= simple_date(@paper.given_date) %>
+  </h3>
+  <h3>
+    <span class="label label-info">出題状態</span>
+    <% if @paper.set %>出題済<% else %>未出題<% end %>
+  </h3>
+</div>
 
-<p>
-  <strong>Index:</strong>
-  <%= @paper.index %>
-</p>
-
-<p>
-  <strong>Given date:</strong>
-  <%= simple_date(@paper.given_date) %>
-</p>
-
-<p>
-  <strong>Set:</strong>
-  <%= @paper.set %>
-</p>
-
-<% if @paper.set %>出題済<% else %>未<% end %>
 <br>
 <% if @paper.set %>
-  <%= link_to '取り消し', reset_paper_path(@paper.id), method: :put, class: "btn btn-danger" %>
+  <%= link_to '出題を取り消す', reset_paper_path(@paper.id), method: :put, class: "btn btn-danger btn-lg" %>
 <% else %>
-  <%= link_to '出題', set_paper_path(@paper.id), method: :put, class: "btn btn-primary" %>
+  <%= link_to '出題する', set_paper_path(@paper.id), method: :put, class: "btn btn-primary btn-lg" %>
 <% end %>
 
 <hr>
