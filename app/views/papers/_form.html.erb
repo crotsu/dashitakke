@@ -1,14 +1,5 @@
 <%= bootstrap_form_for(@paper) do |f| %>
-  <div class="field">
-    <%= f.label :index %><br>
-    <p><%= @paper.index %></p>
     <%= f.hidden_field :index %>
-  </div>
-  <div class="field">
     <%= f.date_select :given_date %>
-  </div>
-
-  <div class="actions">
     <%= f.submit %>
-  </div>
 <% end %>

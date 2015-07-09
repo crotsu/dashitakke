@@ -28,28 +28,13 @@
         <td><%= Answer.where(question_id: question).find_by(user_id: current_user).checked_by %></td>
         <td>
         	<% if question.getfilename(question.id, current_user)=="none" %>
-            <%= form_for(@source, url: {controller: :sources, action: :create, answer_id: Answer.where(question_id: question).find_by(user_id: current_user)}) do |f| %>
-              <% if @source.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(@source.errors.count, "error") %> prohibited this paper from being saved:</h2>
-                  <ul>
-                    <% @source.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                    <% end %>
-                  </ul>
-              </div>
+            <%= bootstrap_form_for(@source, url: {controller: :sources, action: :create, answer_id: Answer.where(question_id: question).find_by(user_id: current_user)}) do |f| %>
+                <%= f.file_field :avatar, hide_label: true %>
+                <%= f.submit "アップロード", class: "btn btn-default btn-xs" %>
             <% end %>
-
-            <div class="field">
-              <%= f.file_field :avatar %>
-            </div>
-            <div class="actions">
-              <%= submit_tag "Upload" %>
-            </div>
-           <% end %>
-         <% else %>
-         <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source} %>
-         <% end %>
+          <% else %>
+            <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source} %>
+          <% end %>
         </td>
       <% end %>
     </tr>
