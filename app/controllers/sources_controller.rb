@@ -28,13 +28,15 @@ class SourcesController < ApplicationController
   def create
     @source = Source.new(source_params)
 
-    @source.answer_id = params[:answer_id]
-
     respond_to do |format|
       if @source.save
         @answer = Answer.find(@source.answer_id)
         # ステータスを更新
-        @answer.update(status: "UPLOAD")
+        if Question.find(@answer.question_id).need_check == "なし"
+          @answer.update(status: "DONE")
+        else
+          @answer.update(status: "UPLOAD")
+        end
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
