@@ -21,4 +21,7 @@
   <% end %>
 <hr>
 
-<%= link_to 'Back', assignments_show_path(id: @source.answer.assignment) %>
+<%= link_to assignments_show_path(id: @source.answer.assignment), :class => "btn btn-default" do %>
+	<span class="glyphicon glyphicon-arrow-left"></span> Back
+<% end %>
+

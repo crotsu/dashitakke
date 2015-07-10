@@ -30,11 +30,13 @@
         	<% if question.getfilename(question.id, current_user)=="none" %>
             <%= bootstrap_form_for(@source, url: {controller: :sources, action: :create }) do |f| %>
                 <%= f.hidden_field :answer_id, value: question.answers.find_by(user_id: current_user).id %>
-                <%= f.file_field :avatar, hide_label: true %>
-                <%= f.submit "アップロード", class: "btn btn-default btn-xs" %>
+                <%= f.file_field :avatar, hide_label: true, type: "file", data: { filename_placement: "inside" }  %>
+                <%= button_tag( class: "btn btn-success" ) do %>
+                  <span class="glyphicon glyphicon-upload"></span> アップロード
+                <% end %>
             <% end %>
           <% else %>
-            <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source} %>
+            <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source}, class: "btn btn-default btn-sm" %>
           <% end %>
         </td>
       <% end %>
@@ -42,4 +44,6 @@
   </tbody>
 </table>
 
-<%= link_to 'Back', assignments_index_path %>
+<%= link_to assignments_index_path, :class => "btn btn-default" do %>
+  <span class="glyphicon glyphicon-arrow-left"></span> Back
+<% end %>

@@ -1,5 +1,7 @@
-  <p>ファイルの差し替え</p>
+  <h4>ファイルの差し替え</h4>
   <%= bootstrap_form_for(@source, url: {controller: :sources, action: :update}, html: {multipart: true}) do |f| %>
-    <%= f.file_field :avatar, hide_label: true %>
-    <%= f.submit "差し替え" %>
+  	<%= f.file_field :avatar, hide_label: true, type: "file", data: { filename_placement: "inside" }  %>
+  	<%= button_tag( class: "btn btn-success" ) do %>
+  		<span class="glyphicon glyphicon-upload"></span> アップロード
+  	<% end %>
  <% end %>
