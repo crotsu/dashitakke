@@ -47,6 +47,7 @@ gem 'twitter-bootstrap-rails',  :git => 'git://github.com/seyhunak/twitter-boots
 gem "less-rails"
 gem 'devise-bootstrap-views'
 gem 'bootstrap_form'
+gem 'jquery-ui-rails'
 
 group :development do
   gem "meta_request"
