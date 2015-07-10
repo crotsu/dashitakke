@@ -52,4 +52,4 @@ group :development do
   gem "meta_request"
 end
 
-gem 'paperclip'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
