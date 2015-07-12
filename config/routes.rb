@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'assignments/index'
+  resources :assignments, only: ['index', 'show']
 
-  get 'assignments/show'
+#  get 'assignments/index'
+
+#  get 'assignments/show'
 
   resources :answers
 
