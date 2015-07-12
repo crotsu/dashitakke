@@ -6,7 +6,6 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-  	@source = Source.new
   end
 
   private

@@ -49,6 +49,10 @@ gem "less-rails"
 
 group :development do
   gem "meta_request"
+  gem "quiet_assets"
+  gem "pry-rails"
+  gem "pry-byebug"
+  gem "awesome_print"
 end
 
 gem 'paperclip'
