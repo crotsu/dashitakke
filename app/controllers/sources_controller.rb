@@ -11,7 +11,7 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @answer = Answer.find(@source.answer.id)
-    @cfile = @source.getSourcefile(@source.avatar.path)
+    @cfile = @source.getSourcefile(@source.filepath)
   end
 
   # GET /sources/new
@@ -27,6 +27,9 @@ class SourcesController < ApplicationController
   # POST /sources.json
   def create
     @source = Source.new(source_params)
+    filename = source_params[:avatar].original_filename
+    save_dir_path = "#{Rails.root}/public/source_code/" + "j" + current_user.number.to_s[0..1] + "/j" + current_user.number.to_s.delete("-") + "/"
+    @source.filepath = save_dir_path + filename
 
     respond_to do |format|
       if @source.save
@@ -51,6 +54,10 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    filename = source_params[:avatar].original_filename
+    save_dir_path = "#{Rails.root}/public/source_code/" + "j" + current_user.number.to_s[0..1] + "/j" + current_user.number.to_s.delete("-") + "/"
+    @source.filepath = save_dir_path + filename
+
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
