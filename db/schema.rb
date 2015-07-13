@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709112248) do
+ActiveRecord::Schema.define(version: 20150713053737) do
 
   create_table "answers", force: true do |t|
     t.string   "status",        null: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150709112248) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "filepath"
   end
 
   add_index "sources", ["answer_id"], name: "index_sources_on_answer_id"
