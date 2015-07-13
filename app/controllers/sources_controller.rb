@@ -35,8 +35,11 @@ class SourcesController < ApplicationController
       if @source.save
         @answer = Answer.find(@source.answer_id)
         # ステータスを更新
-        if Question.find(@answer.question_id).need_check == "なし"
+        @question = Question.find(@answer.question_id)
+        if @question.need_check == "なし"
           @answer.update(status: "DONE")
+          power = current_user.increment(:fighting_power, @question.point)
+          current_user.save
         else
           @answer.update(status: "UPLOAD")
         end
@@ -54,6 +57,15 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    # 戦闘力の更新
+    if (@source.answer.status == "UPLOAD" and source_params[:status] == "DONE") \
+      or (@source.answer.status == "UPLOAD" and source_params[:status] == "DONE")
+      u = @source.answer.user
+      u.increment(:fighting_power, @source.answer.question.point)
+      u.save
+    end
+
+    # 保存先ファイル名の更新
     filename = source_params[:avatar].original_filename
     save_dir_path = "#{Rails.root}/public/source_code/" + "j" + current_user.number.to_s[0..1] + "/j" + current_user.number.to_s.delete("-") + "/"
     @source.filepath = save_dir_path + filename

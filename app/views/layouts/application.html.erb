@@ -64,15 +64,15 @@
             <ul class="nav nav-list">
               <li class="nav-header">Sidebar</li>
                 <% if current_user %>
-                 <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
-                <h3>Status</h3>
-                <li>出席番号:<%= current_user.attendnumber %></li>
-               <li>学籍番号:<%= current_user.number %></li>
-               <li>氏名:<%= current_user.name %></li>
-               <li>e-mail:<%= current_user.email %></li>
-              <% end %>
-              <h3>戦闘力</h3>
-              <h4>45433</h4>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+                  <h3>Status</h3>
+                  <li>出席番号:<%= current_user.attendnumber %></li>
+                  <li>学籍番号:<%= current_user.number %></li>
+                  <li>氏名:<%= current_user.name %></li>
+                  <li>e-mail:<%= current_user.email %></li>
+                  <h3>戦闘力</h3>
+                  <h4><%= current_user.fighting_power %></h4>
+                <% end %>
               <br>
               <h3>Link</h3>
               <li><%= link_to "木更津高専", "http://www.kisarazu.ac.jp/"  %></li>
