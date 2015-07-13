@@ -32,8 +32,11 @@ class SourcesController < ApplicationController
       if @source.save
         @answer = Answer.find(@source.answer_id)
         # ステータスを更新
-        if Question.find(@answer.question_id).need_check == "なし"
+        @question = Question.find(@answer.question_id)
+        if @question.need_check == "なし"
           @answer.update(status: "DONE")
+          power = current_user.increment(:fighting_power, @question.point)
+          current_user.save
         else
           @answer.update(status: "UPLOAD")
         end
