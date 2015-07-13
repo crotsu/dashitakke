@@ -54,6 +54,13 @@ class SourcesController < ApplicationController
   # PATCH/PUT /sources/1
   # PATCH/PUT /sources/1.json
   def update
+    # 戦闘力の更新
+    if (@source.answer.status == "UPLOAD" and source_params[:status] == "DONE") \
+      or (@source.answer.status == "UPLOAD" and source_params[:status] == "DONE")
+      u = @source.answer.user
+      u.increment(:fighting_power, @source.answer.question.point)
+      u.save
+    end
     respond_to do |format|
       if @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
