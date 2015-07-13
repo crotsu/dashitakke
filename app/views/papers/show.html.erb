@@ -1,17 +1,6 @@
-<div class="alert alert-info">
-  <h1>
-    <span class="label label-info">課題番号</span>
-    <%= @paper.index %>
-  </h1>
-  <h3>
-    <span class="label label-info">出題日</span>
-    <%= simple_date(@paper.given_date) %>
-  </h3>
-  <h3>
-    <span class="label label-info">出題状態</span>
-    <% if @paper.set %>出題済<% else %>未出題<% end %>
-  </h3>
-</div>
+<h3>課題番号：<%= @paper.index %></h3>
+<h4>出題日：<%= simple_date(@paper.given_date) %></h4>
+<h4>出題状態：<% if @paper.set %>出題済<% else %>未出題<% end %></h4>
 
 <br>
 <% if @paper.set %>
@@ -26,7 +15,6 @@
 <%= render 'papers/students' %>
 
 <% else %>
-<hr>
 <table class="table table-hover">
   <thead>
     <tr>
