@@ -52,37 +52,43 @@
         </button>
         <a class="navbar-brand" href="/">Dashitakke （課題提出管理システム）</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><p class="navbar-text"><strong>戦闘力 <%= current_user.fighting_power %></strong></p></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span> 
+                  <strong><%= current_user.name %></strong>
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                      <div class="row">
+                        <div class="col-lg-1">
+                          <p class="text-center">
+                          </p>
+                        </div>
+                        <div class="col-lg-11">
+                          <p class="text-left"><strong>　学籍番号：<%= current_user.number %></strong></p>
+                          <p class="text-left"><strong>　出席番号：<%= current_user.attendnumber %></strong></p>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="divider"></li>                    
+                    <li><%= link_to "パスワード変更 ", edit_user_registration_path %></li>
+                    <li class="divider"></li>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: "delete" %></li>
+                  </ul>
+                </li>
+              </ul> 
+          <% end %>
         </div>
       </div>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-                <% if current_user %>
-                  <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
-                  <h3>Status</h3>
-                  <li>出席番号:<%= current_user.attendnumber %></li>
-                  <li>学籍番号:<%= current_user.number %></li>
-                  <li>氏名:<%= current_user.name %></li>
-                  <li>e-mail:<%= current_user.email %></li>
-                  <h3>戦闘力</h3>
-                  <h4><%= current_user.fighting_power %></h4>
-                <% end %>
-              <br>
-              <h3>Link</h3>
-              <li><%= link_to "木更津高専", "http://www.kisarazu.ac.jp/"  %></li>
-              <li><%= link_to "情報工学科", "http://www.kisarazu.ac.jp/gakka/info/public_html/laboratory.php"  %></li>
-              <li><%= link_to "Researchmap:oeda", "http://researchmap.jp/read0075328/"  %></li>
-              <li><%= link_to "YouTube:C言語J2", "https://www.youtube.com/channel/UCh9WEncCjVqbLRIL67IoV3w"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="col-lg-9">
+        <div class="col-lg-12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
