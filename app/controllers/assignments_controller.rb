@@ -6,11 +6,15 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-  	@source = Source.new
+    	@source = Source.new
   end
 
   private
     def set_assignment
-      @assignment = Assignment.find(params[:id])
+      begin
+        @assignment = Assignment.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to root_path, notice: '無効なURLです。'
+      end
     end
 end

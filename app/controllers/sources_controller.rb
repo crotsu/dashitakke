@@ -11,7 +11,11 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @answer = Answer.find(@source.answer.id)
-    @cfile = @source.getSourcefile(@source.filepath)
+    if @answer.user_id == current_user.id
+      @cfile = @source.getSourcefile(@source.filepath)
+    else
+      redirect_to root_path, notice: "無効なURLです。"
+    end
   end
 
   # GET /sources/new
