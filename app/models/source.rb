@@ -25,7 +25,7 @@ class Source < ActiveRecord::Base
   end
 
   def filename_check original_filename = self.avatar.original_filename
-    no = self.answer.question_id
+    no = self.answer.question.index
     date = self.answer.question.paper.given_date.to_s
     filename = "No" + date.split("-")[1] + date.split("-")[2] + "_" + no.to_s + ".c"
     puts no, date, filename
