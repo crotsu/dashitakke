@@ -117,8 +117,6 @@ class SourcesController < ApplicationController
       if source.avatar.original_filename == filename
         return true
       else
-        errors.add(:source, "hogehoge")
-        errors[:base] << "ほげほげ＿＿"
         return false
       end
     end
