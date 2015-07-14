@@ -14,7 +14,7 @@
       <th>要チェック</th>
       <th>ステータス</th>
       <th>Checked by</th>
-      <th>提出ファイル</th>
+      <th>提出</th>
     </tr>
   </thead>
 
@@ -28,13 +28,7 @@
         <td><%= question.answers.find_by(user_id: current_user).checked_by %></td>
         <td>
         	<% if question.getfilename(question.id, current_user)=="none" %>
-            <%= bootstrap_form_for(@source, url: {controller: :sources, action: :create }) do |f| %>
-                <%= f.hidden_field :answer_id, value: question.answers.find_by(user_id: current_user).id %>
-                <%= f.file_field :avatar, hide_label: true, type: "file", data: { filename_placement: "inside" }  %>
-                <%= button_tag( class: "btn btn-success" ) do %>
-                  <span class="glyphicon glyphicon-upload"></span> アップロード
-                <% end %>
-            <% end %>
+            <%= link_to "提出", new_source_path(id:question.id) %>
           <% else %>
             <%= link_to question.getfilename(question.id, current_user.id), {controller: :sources, action: :show, :id => question.answers.find_by(user_id: current_user).source}, class: "btn btn-default btn-sm" %>
           <% end %>

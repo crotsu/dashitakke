@@ -16,7 +16,9 @@ class SourcesController < ApplicationController
 
   # GET /sources/new
   def new
+    @answer = current_user.answers.where(question_id: params[:id]).first()
     @source = Source.new
+    @source.answer = @answer
   end
 
   # GET /sources/1/edit
@@ -27,13 +29,16 @@ class SourcesController < ApplicationController
   # POST /sources.json
   def create
     @source = Source.new(source_params)
-    filename = source_params[:avatar].original_filename
-    save_dir_path = "#{Rails.root}/public/source_code/" + "j" + current_user.number.to_s[0..1] + "/j" + current_user.number.to_s.delete("-") + "/"
-    @source.filepath = save_dir_path + filename
 
     respond_to do |format|
       if @source.save
         @answer = Answer.find(@source.answer_id)
+
+        filename = source_params[:avatar].original_filename
+        save_dir_path = "#{Rails.root}/public/source_code/" + "j" + current_user.number.to_s[0..1] + "/j" + current_user.number.to_s.delete("-") + "/"
+        @source.filepath = save_dir_path + filename
+        @source.save
+
         # ステータスを更新
         @question = Question.find(@answer.question_id)
         if @question.need_check == "なし"
@@ -43,12 +48,12 @@ class SourcesController < ApplicationController
         else
           @answer.update(status: "UPLOAD")
         end
+
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
-        assignment_id = Answer.find(@source.answer_id).assignment_id
-        @assignment = Assignment.find(assignment_id)
-        format.html { render :template => "assignments/show", :locals => { :assignment => @assignment } }
+        @answer = Answer.find(@source.answer_id)
+        format.html { render :new }
         format.json { render json: @source.errors, status: :unprocessable_entity }
       end
     end
