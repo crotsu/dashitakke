@@ -11,7 +11,8 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @answer = Answer.find(@source.answer.id)
-    if @answer.user_id == current_user.id
+    if not current_user.roles.exists?(name: 'member') \
+      or @answer.user_id == current_user.id then
       @cfile = @source.getSourcefile(@source.filepath)
     else
       redirect_to root_path, notice: "無効なURLです。"
