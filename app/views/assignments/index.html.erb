@@ -14,7 +14,7 @@
   <tbody>
     <% @assignments.each do |assignment| %>
       <tr>
-        <td><%= link_to '第' + assignment.paper.index.to_s + '回', {action: :show, id: assignment.id} %></td>
+        <td><%= link_to '第' + assignment.paper.index.to_s + '回', assignment_path(assignment) %></td>
         <td><%= simple_date(assignment.paper.given_date)%></td>
         <td><span class="badge"><%= assignment.paper.questions.length %></span></td>
         <td><span class="badge"><%= assignment.undone_answers.length %></span></td>
