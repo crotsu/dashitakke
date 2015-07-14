@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
   $('#source_avatar').fileinput
-    showPreview: false
+    showPreview: true
     maxFileCount: 1
     browseClass: 'btn btn-info fileinput-browse-button'
     browseIcon: ''
