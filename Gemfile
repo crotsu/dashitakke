@@ -49,6 +49,7 @@ gem 'devise-bootstrap-views'
 gem 'bootstrap_form'
 gem 'jquery-ui-rails'
 gem 'rails-assets-bootstrap-fileinput', source: 'https://rails-assets.org' 
+gem 'compass-rails'
 
 group :development do
   gem "meta_request"
