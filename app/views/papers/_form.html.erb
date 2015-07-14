@@ -1,5 +1,5 @@
 <%= bootstrap_form_for(@paper) do |f| %>
-    <%= f.hidden_field :index %>
+    <%= f.number_field :index %>
     <%= f.date_select :given_date %>
     <%= f.submit %>
 <% end %>
