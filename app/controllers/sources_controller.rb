@@ -17,8 +17,12 @@ class SourcesController < ApplicationController
   # GET /sources/new
   def new
     @answer = current_user.answers.where(question_id: params[:id]).first()
-    @source = Source.new
-    @source.answer = @answer
+    if @answer.status == "UNDONE"
+      @source = Source.new
+      @source.answer = @answer
+    else
+      redirect_to assignment_path(@answer.assignment), notice: "すでに提出済です。"
+    end
   end
 
   # GET /sources/1/edit

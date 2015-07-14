@@ -16,8 +16,6 @@ class Source < ActiveRecord::Base
   # 100kB未満のファイルしか受け付けない
   validates_attachment_size :avatar, :less_than => 100.kilobytes
 
-  validates :filepath, uniqueness: true
-
   def getSourcefile path
     f = open(path, "r")
     # 文字コードをUTF-8に変換する。それでも不正なバイト文字が含まれていたら'?'で置換
