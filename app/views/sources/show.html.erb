@@ -15,13 +15,14 @@
 
 <hr>
   <% if current_user.roles.exists?(name: 'member') %>
+  <h4>差し替え</h4>
   <%= render 'sources/student' %>
   <% else %>
   <%= render 'sources/teacher' %>
   <% end %>
 <hr>
 
-<%= link_to assignments_show_path(id: @source.answer.assignment), :class => "btn btn-default" do %>
+<%= link_to assignment_path(@source.answer.assignment), :class => "btn btn-default" do %>
 	<span class="glyphicon glyphicon-arrow-left"></span> Back
 <% end %>
 

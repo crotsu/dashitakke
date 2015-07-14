@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @source = Source.new
   end
 
   def new
