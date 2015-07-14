@@ -1,4 +1,13 @@
 	<%= bootstrap_form_for(@source) do |f| %>
+	  <% if @source.errors.any? %>
+    <div class="alert alert-danger fade in">
+      <ul>
+      <% @source.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   		<%= f.hidden_field :answer_id, value: @source.answer_id %>
   		<%= f.file_field :avatar, hide_label: true %>
 	<% end %>

@@ -35,7 +35,7 @@ class SourcesController < ApplicationController
     @source = Source.new(source_params)
 
     respond_to do |format|
-      if filename_check(@source) and @source.save
+      if @source.filename_check and @source.save
         @answer = Answer.find(@source.answer_id)
 
         filename = source_params[:avatar].original_filename
@@ -56,6 +56,7 @@ class SourcesController < ApplicationController
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
+        puts @source.errors.messages
         @answer = Answer.find(@source.answer_id)
         format.html { render :new }
         format.json { render json: @source.errors, status: :unprocessable_entity }
@@ -112,16 +113,5 @@ class SourcesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
       params.require(:source).permit(:answer_id, :avatar)
-    end
-
-    def filename_check source
-      no = source.answer.question_id
-      date = source.answer.question.paper.given_date.to_s
-      filename = "No" + date.split("-")[1] + date.split("-")[2] + "_" + no.to_s + ".c"
-      if source.avatar.original_filename == filename
-        return true
-      else
-        return false
-      end
     end
 end

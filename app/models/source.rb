@@ -24,4 +24,18 @@ class Source < ActiveRecord::Base
     return srcFile
   end
 
+  def filename_check
+    no = self.answer.question_id
+    date = self.answer.question.paper.given_date.to_s
+    filename = "No" + date.split("-")[1] + date.split("-")[2] + "_" + no.to_s + ".c"
+    if self.avatar.original_filename == filename
+      return true
+    else
+      self.errors[:base] << "指定したファイル名でアップロードしてください。"
+      puts self.errors.messages
+      return false
+    end
+  end
+
+
 end
