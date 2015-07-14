@@ -56,7 +56,6 @@ class SourcesController < ApplicationController
         format.html { redirect_to @source, notice: 'Source was successfully created.' }
         format.json { render :show, status: :created, location: @source }
       else
-        puts @source.errors.messages
         @answer = Answer.find(@source.answer_id)
         format.html { render :new }
         format.json { render json: @source.errors, status: :unprocessable_entity }
@@ -81,7 +80,7 @@ class SourcesController < ApplicationController
     @source.filepath = save_dir_path + filename
 
     respond_to do |format|
-      if @source.update(source_params)
+      if @source.filename_check(filename) and @source.update(source_params)
         format.html { redirect_to @source, notice: 'Source was successfully updated.' }
         format.json { render :show, status: :ok, location: @source }
       else

@@ -24,11 +24,12 @@ class Source < ActiveRecord::Base
     return srcFile
   end
 
-  def filename_check
+  def filename_check original_filename = self.avatar.original_filename
     no = self.answer.question_id
     date = self.answer.question.paper.given_date.to_s
     filename = "No" + date.split("-")[1] + date.split("-")[2] + "_" + no.to_s + ".c"
-    if self.avatar.original_filename == filename
+    puts no, date, filename
+    if original_filename == filename
       return true
     else
       self.errors[:base] << "指定したファイル名でアップロードしてください。"
@@ -36,6 +37,5 @@ class Source < ActiveRecord::Base
       return false
     end
   end
-
 
 end
