@@ -17,7 +17,7 @@ ready = ->
     allowedFileExtensions: ['c']
     msgValidationError: '''
       <span class="text-danger">
-        <i class="fa fa-warning"></i> CSV ファイルのみ有効です。
+        <i class="glyphicon glyphicon-exclamation-sign"></i> 拡張子が C のファイルのみ有効です。
       </span>
     '''
 
