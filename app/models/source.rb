@@ -32,7 +32,7 @@ class Source < ActiveRecord::Base
     if original_filename == filename
       return true
     else
-      self.errors[:base] << "指定したファイル名でアップロードしてください。"
+      self.errors[:base] << "指定したファイル名[" + filename + "]でアップロードしてください。"
       puts self.errors.messages
       return false
     end
